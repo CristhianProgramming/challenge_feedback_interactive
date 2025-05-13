@@ -106,6 +106,7 @@
 
       #view_clasification{
         display:  block;
+        
       }
 
       #feedback_text{
@@ -163,7 +164,10 @@
   <body>
     <div id="view_clasification" class="container">
       <img class="star" src="./images/icon-star.svg" alt="star icon" />
+      <head>
       <h1>How did we do?</h1>
+      </head>
+      <main>
       <p>
         Please let us know how we did with your support request. All feedback is
         appreciated to help us improve our offering!
@@ -175,17 +179,22 @@
         <button class="classification-button">4</button>
         <button class="classification-button">5</button>
       </section>
+            </main>
       <button onclick="setView()" class="send">SUBMIT</button>
     </div>
 
     <div id="view_resume" class="container">
       <img src="./images/illustration-thank-you.svg" alt="tanks icon">
       <p id="feedback_text">You selected {{value_selected}} out of 5</p>
+      <head>
       <h1>Thank You!</h1>
+      </head>
+      <main>
       <p>We appreciate you taking the time to give a rating.
         if you even need more support,don't hesitate to
         get in touch!
       </p>
+      </main>
     </div>
 
   </body>

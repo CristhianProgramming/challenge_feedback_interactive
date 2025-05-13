@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      body,
+      html {
+        font-family: "Overpass", sans-serif;
+        display: flex;
+        background-color: hsl(216, 12%, 8%);
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      p {
+        font-size: 15px;
+        color: hsl(217, 12%, 63%);
+      }
+
+      .container {
+        background-color: hsl(213, 19%, 18%);
+        width: 375px;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5%;
+        user-select: none;
+      }
+
+      h1 {
+        color: white;
+      }
+
+      .star {
+        background-color: hsla(217, 12%, 63%, 0.089);
+        padding: 10px;
+        border-radius: 100%;
+      }
+
+      .clasification {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0px;
+      }
+
+      .clasification button {
+        background: hsla(217, 12%, 63%, 0.089);
+        color: white;
+        border-radius: 100%;
+        width: 50px;
+        border: none;
+        height: 50px;
+        padding: 10px;
+      }
+
+      .clasification button.selected {
+        color: white;
+        background-color: hsl(25, 97%, 53%);
+      }
+
+      .send {
+        background-color: hsl(25, 97%, 53%);
+        width: 100%;
+        margin-top: 20px;
+        height: 40px;
+        padding: 10px 20px;
+        border: none;
+        font-weight: 700;
+        border-radius: 15px;
+      }
+
+      button:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+      }
+
+      .resume_icon{
+        width: 200px;
+      }
+
+      #view_resume{
+        display: none ;
+        text-align: center;
+       padding: 20px;
+      }
+
+      #view_clasification{
+        display:  block;
+      }
+
+      #feedback_text{
+        width: fit-content;
+        background-color: hsla(217, 12%, 63%, 0.099);
+        color: hsl(25, 97%, 53%);
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 25px;
+        margin: 30px auto;
+      }
+
+    </style>
+    <script>
+      let value_selected = 0;
+
+    
+      document.addEventListener("DOMContentLoaded", () => {
+
+        const buttons = document.querySelectorAll(".classification-button");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            if (button.textContent !== value_selected) {
+              buttons.forEach((btn) => btn.classList.remove("selected"));
+              button.classList.add("selected");
+              value_selected = button.textContent;
+              return;
+            }
+            button.classList.remove("selected")
+            value_selected = 0;
+          });
+        });
+      });
+
+
+      setView = () =>{
+        if (value_selected === 0) {
+          alert("seleccione un valor")
+        //TODO  const buttonSection = document.querySelector(".clasification");
+          return;
+        }
+        
+        const text = document.querySelector("#feedback_text");
+        const classifications = document.querySelector("#view_clasification");
+        const resume = document.querySelector("#view_resume");
+        
+        text.innerHTML = text.textContent.replace("{{value_selected}}",value_selected)
+        classifications.style.display = "none"
+        resume.style.display = "block"
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="view_clasification" class="container">
+      <img class="star" src="./images/icon-star.svg" alt="star icon" />
+      <h1>How did we do?</h1>
+      <p>
+        Please let us know how we did with your support request. All feedback is
+        appreciated to help us improve our offering!
+      </p>
+      <section class="clasification">
+        <button class="classification-button">1</button>
+        <button class="classification-button">2</button>
+        <button class="classification-button">3</button>
+        <button class="classification-button">4</button>
+        <button class="classification-button">5</button>
+      </section>
+      <button onclick="setView()" class="send">SUBMIT</button>
+    </div>
+
+    <div id="view_resume" class="container">
+      <img src="./images/illustration-thank-you.svg" alt="tanks icon">
+      <p id="feedback_text">You selected {{value_selected}} out of 5</p>
+      <h1>Thank You!</h1>
+      <p>We appreciate you taking the time to give a rating.
+        if you even need more support,don't hesitate to
+        get in touch!
+      </p>
+    </div>
+
+  </body>
+</html>
